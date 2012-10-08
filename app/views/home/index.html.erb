@@ -9,18 +9,17 @@
        <b style="color:#0000FF"> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> <br />
         <%= link_to 'Update', edit_user_registration_path %> <br />
         <%= link_to 'Details', user_path(current_user) %><br />
+	<%= link_to "Products", stores_path %> <br />
     <% else %>
     <% if admin_signed_in? %>
 	<h2>Hello Admin <%= current_admin.email %></h2>
         Signed in as <%= current_admin.email %>. This cannot be cheese? <br />
        <b style="color:#0000FF"> <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %> <br />
-       
-        
+	<b style="color:#0000FF"> <%= link_to "Products", products_path %> <br />
+	
     <% else %>
        <%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Sign in', new_user_session_path %>
     <% end %>
-
-        
     <% end %>
     
     
