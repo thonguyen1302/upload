@@ -1,14 +1,11 @@
 Devise2::Application.routes.draw do
- 
- 
 
- # get "users/index"
 
-  #get "users/edit"
+  resources :line_items
 
-  #get "users/show"
+  resources :carts
 
-#  get "users/_form"
+  resources :products
 
   resources :posts
 
@@ -19,7 +16,6 @@ Devise2::Application.routes.draw do
  # devise_for :users, :path => "usuarios", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
 
   devise_for :users, :controllers => {:registrations => "registrations" , :sessions => "sessions" }
-
   
   devise_scope :users do
     get "sign_in", :to => "sessions#new"
@@ -28,6 +24,17 @@ Devise2::Application.routes.draw do
     #get "show", :to => "users#show"
   end
   resources :users
+  
+   
+  devise_for :admins, :controllers => { :sessions => "sessions" }
+
+  devise_scope :admins do
+   get "sign_in", :to => "sessions#new"
+   
+  end
+
+  resources :admins
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:
