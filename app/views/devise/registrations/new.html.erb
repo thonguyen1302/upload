@@ -12,6 +12,19 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
+  <div><%= f.label :first_name %><br />
+  <%= f.text_field :first_name %></div>
+
+  <div><%= f.label :last_name %><br />
+  <%= f.text_field :last_name%></div>
+  
+  <div><%= f.label :birthday %><br />
+  <%= f.date_select("birthday", :start_year => 1995)%></div>
+  
+  <div><%= f.label :phone_number %><br />
+  <%= f.text_field :phone_number%></div>
+
+
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 

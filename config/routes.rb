@@ -1,15 +1,33 @@
 Devise2::Application.routes.draw do
+ 
+ 
+
+ # get "users/index"
+
+  #get "users/edit"
+
+  #get "users/show"
+
+#  get "users/_form"
+
   resources :posts
 
   get "home/index"
-
-  devise_for :users, :path => "usuarios", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
   
-  devise_scope :user do
-    get "sign_in", :to => "devise/sessions#new"
+  
+
+ # devise_for :users, :path => "usuarios", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
+
+  devise_for :users, :controllers => {:registrations => "registrations" , :sessions => "sessions" }
+
+  
+  devise_scope :users do
+    get "sign_in", :to => "sessions#new"
+    #delete :sign_out, :to => "sessions#destroy"
+    #get "users", :to => "sessions#new"
+    #get "show", :to => "users#show"
   end
-
-
+  resources :users
   root :to => "home#index"
 
   # The priority is based upon order of creation:
