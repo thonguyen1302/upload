@@ -3,7 +3,9 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    #@orders = Order.all
+    @user=current_user
+    @orders = Order.where(:user_id => @user.id)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -51,13 +51,21 @@
               <li><%= link_to "Link1", "/path1"  %></li>
               <li><%= link_to "Link2", "/path2"  %></li>
               <li><%= link_to "Link3", "/path3"  %></li>
-              <li><% if user_signed_in? %>
-         		
-        		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+              <% if user_signed_in? %>
+				<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+         			<li><h6>Hello User <%= current_user.email %></h6></li>
+        			
     			<% else %>
-       			<%= link_to 'Sign in', new_user_session_path %>
+			<% if admin_signed_in? %>
+				<li><h6>Hello Admin <%= current_admin.email %></h6></li>
+				<li><%= link_to "Sign out", destroy_admin_session_path, :method => :delete %> <li>
+    			<% else %>
+       				<li><%= link_to 'Sign in', new_user_session_path %></li>
+				
+    			<% end %>
+       			
   			<% end %>
-	     </li>
+	     
 	     
 
 

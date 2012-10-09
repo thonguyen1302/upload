@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.hidden_field :user_id, size: 40, value: current_user.id %>
+  </div>
+
+
+  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, size: 40 %>
 
@@ -22,8 +27,9 @@
 
   </div>
   <div class="field">
+ 
     <%= f.label :email %><br />
-    <%= f.email_field :email, size: 40 %>
+    <%= f.email_field :email, size: 40, value: current_user.email, readonly: "true" %>
 
   </div>
   <div class="field">
