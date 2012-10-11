@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'stripe'
+
 gem "twitter-bootstrap-rails"
 
 gem 'tlsmail'

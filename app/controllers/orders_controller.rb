@@ -1,5 +1,11 @@
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
+  #stripe chrge
+  def charge
+	
+  end
+
+
   # GET /orders
   # GET /orders.json
   def index
@@ -49,6 +55,36 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+
+  #stripe
+	@user = current_user
+	@cart = current_cart
+	  # set your secret key: remember to change this to your live secret key in production
+	# see your keys here https://manage.stripe.com/account
+	Stripe.api_key = "sk_P8ADVDkWBP95LNkSv6dghiwSDaLdk"
+	
+	# get the credit card details submitted by the form
+	token = params[:stripeToken]
+	
+	# create a Customer
+	customer = Stripe::Customer.create(
+	  :card => token,
+	  :description => @user.email
+	)
+
+	puts customer.inspect
+	#error this
+	
+	# charge the Customer instead of the card
+	Stripe::Charge.create(
+	    :amount => (@cart.total_price*100).to_i, # in cents
+	    :currency => "usd",
+	    :customer => customer.id
+	)
+
+
+
+
     @order = Order.new(params[:order])
     @order.add_line_items_from_cart(current_cart)
 

@@ -4,7 +4,7 @@ Devise2::Application.routes.draw do
   resources :orders
 
   get "store/index", as: :stores
-  #get "orders/index", as: :order
+
   resources :line_items
 
   resources :carts
